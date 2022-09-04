@@ -1,5 +1,5 @@
 <template>
-  Smart weather<sup>TM</sup>
+  <div class="app-name">Smart weather<sup>TM</sup></div>
   <div class="input-container">
     <label for="city-input">Введите название города</label>
     <input
@@ -8,7 +8,7 @@
       id="city-input"
       type="text"
     />
-    <button @click="transferInfo">Добавить</button>
+    <button class="add-button" @click="transferInfo">Добавить</button>
   </div>
 
   <InfoGrid
@@ -120,7 +120,7 @@ export function capitalizeFirstLetter(string) {
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -130,6 +130,10 @@ export function capitalizeFirstLetter(string) {
 
 sup {
   font-size: 7px;
+}
+
+.app-name {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 .input-container {
@@ -148,6 +152,20 @@ sup {
   button {
     width: 70%;
     margin: 0 auto;
+  }
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  padding: 5px 5px;
+  color: #fff;
+  background-color: #48484a;
+  transition: transform 0.2s;
+
+  &:hover {
+    // outline: solid rgb(42, 99, 204);
+    transform: scale(1.05);
   }
 }
 </style>

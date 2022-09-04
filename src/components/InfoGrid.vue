@@ -15,11 +15,11 @@
   </div>
   <div class="pagination">
     <button :disabled="page <= 1" class="previous-button" @click="previousPage">
-      Назад
+      &lt;
     </button>
     <div class="pagination__page">{{ page }}/{{ maxPage }}</div>
     <button :disabled="page >= maxPage" class="next-button" @click="nextPage">
-      Вперед
+      &gt;
     </button>
   </div>
 </template>
@@ -133,6 +133,17 @@ $animDuration: 0.4s;
   &__page {
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  button {
+    width: 45px;
+
+    &:disabled {
+      filter: opacity(0.3);
+    }
+    &:disabled:hover {
+      transform: scale(1);
+    }
   }
 }
 </style>

@@ -114,8 +114,19 @@ $appearDuration: 0.4s;
   }
 
   &__delete-button {
+    outline: solid #48484a;
+    color: black;
+    background-color: transparent;
     width: 145px;
     margin: 0 auto;
+    transition: all 0.3s;
+    width: 30%;
+
+    &:hover {
+      background-color: #48484a;
+      color: white;
+      transform: scale(1);
+    }
   }
 }
 
