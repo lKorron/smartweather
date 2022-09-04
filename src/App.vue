@@ -1,30 +1,37 @@
 <template>
-  <div class="app-name">Smart weather<sup>TM</sup></div>
-  <div class="input-container">
-    <label for="city-input">Введите название города</label>
-    <input
-      @keydown.enter="transferInfo"
-      v-model="inputData"
-      id="city-input"
-      type="text"
-    />
-    <button class="add-button" @click="transferInfo">Добавить</button>
-  </div>
+  <div class="wrapper">
+    <div class="app-name">Smart weather<sup>TM</sup></div>
+    <div class="input-container">
+      <label for="city-input">Введите название города</label>
+      <input
+        @keydown.enter="transferInfo"
+        v-model="inputData"
+        id="city-input"
+        type="text"
+      />
+      <button class="add-button" @click="transferInfo">Добавить</button>
+    </div>
 
-  <InfoGrid
-    :cityData="cityData"
-    @onDelete="deleteCard"
-    ref="infoGrid"
-  ></InfoGrid>
+    <AppFilter @onCardsCountChange="cardsCountChanged"></AppFilter>
+
+    <InfoGrid
+      :cityData="cityData"
+      @onDelete="deleteCard"
+      ref="infoGrid"
+      :cardsCount="cardsCount"
+    ></InfoGrid>
+  </div>
 </template>
 
 <script>
 import InfoGrid from "./components/InfoGrid.vue";
+import AppFilter from "./components/AppFilter.vue";
 
 export default {
   name: "App",
   components: {
     InfoGrid,
+    AppFilter,
   },
 
   data() {
@@ -33,6 +40,7 @@ export default {
       inputData: "",
       cityData: [],
       isAnimationStart: false,
+      cardsCount: null,
     };
   },
 
@@ -106,6 +114,9 @@ export default {
       this.cityData = this.cityData.filter((el) => el.name !== name);
       localStorage.setItem("storedCityData", JSON.stringify(this.cityData));
     },
+    cardsCountChanged(cardsCount) {
+      this.cardsCount = cardsCount;
+    },
   },
 };
 
@@ -119,6 +130,15 @@ export function capitalizeFirstLetter(string) {
 </script>
 
 <style lang="scss">
+.wrapper {
+  margin-right: auto; /* 1 */
+  margin-left: auto; /* 1 */
+
+  max-width: 1000px; /* 2 */
+
+  padding-right: 10px; /* 3 */
+  padding-left: 10px; /* 3 */
+}
 #app {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

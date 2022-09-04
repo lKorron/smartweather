@@ -31,14 +31,21 @@ export default {
   name: "InfoGrid",
   props: {
     cityData: Object,
+    cardsCount: Number,
   },
 
   emits: ["onDelete"],
 
+  watch: {
+    cardsCount() {
+      this.itemsPerPage = this.cardsCount;
+    },
+  },
+
   data() {
     return {
       page: 1,
-      itemsPerPage: 6,
+      itemsPerPage: 3,
       isAnimationStart: false,
     };
   },
@@ -109,7 +116,6 @@ $animDuration: 0.4s;
 }
 
 .bordered-container {
-  max-width: 60%;
   margin: 0 auto;
 }
 
