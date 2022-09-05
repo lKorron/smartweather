@@ -50,21 +50,20 @@ export default {
     };
   },
   methods: {
-    previousPage() {
-      this.page--;
+    startAnimation() {
       this.isAnimationStart = true;
 
       setTimeout(() => {
         this.isAnimationStart = false;
       }, 300);
     },
+    previousPage() {
+      this.page--;
+      this.startAnimation();
+    },
     nextPage() {
       this.page++;
-      this.isAnimationStart = true;
-
-      setTimeout(() => {
-        this.isAnimationStart = false;
-      }, 300);
+      this.startAnimation();
     },
     paginateArray() {
       const start = (this.page - 1) * this.itemsPerPage;
@@ -85,7 +84,8 @@ export default {
 
     onCityAdded() {
       if (this.paginateArray().length >= this.itemsPerPage) {
-        this.nextPage();
+        this.page = this.maxPage;
+        this.startAnimation();
       }
     },
 
