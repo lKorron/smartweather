@@ -81,10 +81,15 @@ $appearDuration: $animationDuration;
   border: 1px solid gray;
   border-radius: 10px;
   box-shadow: 3px 3px 2px gray;
+  transition: outline 0.2s;
 
   &:hover {
     outline: solid $hoverColor;
     border-color: $hoverColor;
+  }
+
+  &:active {
+    outline: solid 5px $hoverColor;
   }
 
   > :first-child {
