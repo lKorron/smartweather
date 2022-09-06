@@ -26,10 +26,15 @@
       &gt;
     </button>
   </div>
+  <WeatherPresentation
+    v-if="chosenCard"
+    :cityCard="chosenCard"
+  ></WeatherPresentation>
 </template>
 
 <script>
 import WeatherCard from "./WeatherCard.vue";
+import WeatherPresentation from "./WeatherPresentation.vue";
 
 export default {
   name: "InfoGrid",
@@ -108,7 +113,7 @@ export default {
       return Math.ceil(this.cityData.length / this.itemsPerPage);
     },
   },
-  components: { WeatherCard },
+  components: { WeatherCard, WeatherPresentation },
 };
 </script>
 
