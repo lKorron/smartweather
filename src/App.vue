@@ -12,9 +12,15 @@
       <button class="add-button" @click="transferInfo">Добавить</button>
     </div>
 
-    <AppFilter @onCardsCountChange="cardsCountChanged"></AppFilter>
+    <div class="app-representation"></div>
+
+    <AppFilter
+      v-if="cityData.length > 0"
+      @onCardsCountChange="cardsCountChanged"
+    ></AppFilter>
 
     <InfoGrid
+      v-if="cityData.length > 0"
       :cityData="cityData"
       @onDelete="deleteCard"
       ref="infoGrid"
@@ -87,7 +93,7 @@ export default {
 
       localStorage.setItem("storedCityData", JSON.stringify(this.cityData));
 
-      this.$refs.infoGrid.onCityAdded();
+      this.$refs.infoGrid?.onCityAdded();
     },
     async getWeatherJson(cityName) {
       let name = cityName.toLowerCase();

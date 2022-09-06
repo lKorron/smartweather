@@ -71,11 +71,6 @@ export default {
 
       let resultingArray = this.cityData.slice(start, end);
 
-      if (resultingArray.length > this.itemsPerPage) {
-        console.log(resultingArray.length);
-        this.nextPage();
-      }
-
       if (resultingArray.length <= 0 && this.page > 1) {
         this.previousPage();
       }
@@ -84,8 +79,10 @@ export default {
 
     onCityAdded() {
       if (this.paginateArray().length >= this.itemsPerPage) {
-        this.page = this.maxPage;
-        this.startAnimation();
+        if (this.page !== this.maxPage) {
+          this.page = this.maxPage;
+          this.startAnimation();
+        }
       }
     },
 
