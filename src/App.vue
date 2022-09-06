@@ -12,20 +12,18 @@
       <button class="add-button" @click="transferInfo">Добавить</button>
     </div>
 
-    <div class="app-representation"></div>
+    <Transition name="represent"
+      ><div v-if="cityData.length > 0" class="app-representation">
+        <AppFilter @onCardsCountChange="cardsCountChanged"></AppFilter>
 
-    <AppFilter
-      v-if="cityData.length > 0"
-      @onCardsCountChange="cardsCountChanged"
-    ></AppFilter>
-
-    <InfoGrid
-      v-if="cityData.length > 0"
-      :cityData="cityData"
-      @onDelete="deleteCard"
-      ref="infoGrid"
-      :cardsCount="cardsCount"
-    ></InfoGrid>
+        <InfoGrid
+          :cityData="cityData"
+          @onDelete="deleteCard"
+          ref="infoGrid"
+          :cardsCount="cardsCount"
+        ></InfoGrid>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -136,6 +134,22 @@ export function capitalizeFirstLetter(string) {
 </script>
 
 <style lang="scss">
+@import "scss/variables.scss";
+
+.represent-enter-active,
+.represent-leave-active {
+  animation-duration: $animationDuration;
+  animation-timing-function: $fastTimingFunction;
+}
+
+.represent-enter-active {
+  animation-name: appear;
+}
+
+.represent-leave-active {
+  animation-name: disappear;
+}
+
 .wrapper {
   margin-right: auto; /* 1 */
   margin-left: auto; /* 1 */

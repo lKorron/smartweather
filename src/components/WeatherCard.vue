@@ -69,8 +69,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/variables.scss";
+
 $hoverColor: rgb(42, 99, 204);
-$appearDuration: 0.4s;
+$appearDuration: $animationDuration;
 
 .card {
   display: flex;
@@ -133,12 +135,13 @@ $appearDuration: 0.4s;
 .appearingCard {
   animation-name: appear;
   animation-duration: $appearDuration;
-  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-timing-function: $fastTimingFunction;
 }
 
 .disappearingCard {
   animation-name: disappear;
   animation-duration: $appearDuration;
+  animation-timing-function: $fastTimingFunction;
 }
 
 @keyframes appear {

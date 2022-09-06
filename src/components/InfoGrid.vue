@@ -103,13 +103,15 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/variables.scss";
+
 $indent: 20px;
-$animDuration: 0.4s;
+$animDuration: $animationDuration;
 
 .cards-enter-active {
   animation-name: appear;
   animation-duration: $animDuration;
-  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-timing-function: $fastTimingFunction;
 }
 
 .bordered-container {
