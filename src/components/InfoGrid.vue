@@ -6,6 +6,9 @@
           v-for="(city, i) in paginateArray()"
           :key="i"
           class="card"
+          :class="{
+            card_selected: chosenCard === city,
+          }"
           @onClick="chooseCard"
           @onDelete="deleteCard"
           :cityData="city"
@@ -47,14 +50,14 @@ export default {
     return {
       page: 1,
       itemsPerPage: 3,
+      isAnimationStart: false,
       chosenCard: null,
     };
   },
   methods: {
     chooseCard(cityName) {
-      console.log(cityName);
-      this.chooseCard = this.paginateArray().filter(
-        (el) => el.cityName == cityName
+      this.chosenCard = this.paginateArray().filter(
+        (el) => el.name == cityName
       )[0];
     },
     startAnimation() {

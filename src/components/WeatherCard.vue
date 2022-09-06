@@ -94,6 +94,11 @@ $appearDuration: $animationDuration;
     border-color: $hoverColor;
   }
 
+  &:active {
+    outline: solid $darkGray;
+    border-color: $darkGray;
+  }
+
   > :first-child {
     padding-top: 10px;
   }
@@ -123,7 +128,7 @@ $appearDuration: $animationDuration;
   }
 
   &__delete-button {
-    outline: solid #48484a;
+    outline: solid $darkGray;
     color: black;
     background-color: transparent;
     width: 145px;
@@ -132,11 +137,16 @@ $appearDuration: $animationDuration;
     width: 30%;
 
     &:hover {
-      background-color: #48484a;
+      background-color: $darkGray;
       color: white;
       transform: scale(1);
     }
   }
+}
+
+.card_selected {
+  outline: solid $darkGray;
+  border-color: $darkGray;
 }
 
 .appearingCard {
