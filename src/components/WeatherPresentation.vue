@@ -1,12 +1,12 @@
 <template>
   <div class="presentation">
-    <div class="presentation__name">{{ cityCard.name }}</div>
+    <!-- <div class="presentation__name">{{ cityCard.name }}</div>
     <div class="presentation__image">
       <img :src="iconSrc" alt="preview image" />
     </div>
     <div class="card__description">
       {{ description }}
-    </div>
+    </div> -->
     <div class="presentation__body">
       <div class="presentation__temp temp">
         <h2 class="temp__header">Показатели темературы</h2>
