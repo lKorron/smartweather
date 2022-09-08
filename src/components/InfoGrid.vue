@@ -116,7 +116,12 @@ export default {
 
     deleteCard(name) {
       this.$emit("onDelete", name);
-      this.chosenCard = null;
+
+      if (this.chosenCard) {
+        if (this.chosenCard.name.toLowerCase() === name.toLowerCase()) {
+          this.chosenCard = null;
+        }
+      }
     },
   },
   computed: {
