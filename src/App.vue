@@ -40,7 +40,6 @@ export default {
 
   data() {
     return {
-      cityName: "",
       inputData: "",
       cityData: [],
       isAnimationStart: false,
@@ -67,27 +66,27 @@ export default {
         return;
       }
 
-      this.cityName = this.inputData;
+      const cityName = this.inputData;
       this.inputData = "";
 
       if (
         this.cityData.filter(
-          (el) => el.name.toLowerCase() === this.cityName.toLowerCase()
+          (el) => el.name.toLowerCase() === cityName.toLowerCase()
         ).length > 0
       ) {
-        alert(`Город ${capitalizeFirstLetter(this.cityName)} уже добавлен`);
+        alert(`Город ${capitalizeFirstLetter(cityName)} уже добавлен`);
         return;
       }
 
       let obj = {
-        name: this.cityName,
+        name: cityName,
         data: null,
       };
 
       this.cityData.push(obj);
 
       // setInterval(() => this.getWeatherJson(this.cityName), 3000);
-      this.getWeatherJson(this.cityName);
+      this.getWeatherJson(cityName);
 
       localStorage.setItem("storedCityData", JSON.stringify(this.cityData));
 
