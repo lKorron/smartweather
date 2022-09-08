@@ -45,9 +45,26 @@ export default {
 
   emits: ["onDelete", "onClick"],
 
+  created() {
+    const windowData = Object.fromEntries(
+      new URL(window.location).searchParams.entries()
+    );
+
+    if (windowData.page) {
+      this.page = windowData.page;
+    }
+  },
+
   watch: {
     cardsCount() {
       this.itemsPerPage = this.cardsCount;
+    },
+    page() {
+      window.history.pushState(
+        null,
+        document.title,
+        `${window.location.pathname}?page=${this.page}`
+      );
     },
   },
 
