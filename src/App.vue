@@ -108,7 +108,7 @@ export default {
           this.cityData.find((el) => el.name === cityName).data = json;
         } else {
           alert(`Город "${this.cityName}" не найден`);
-          this.deleteCard(this.cityName); // Проблема
+          setTimeout(() => this.deleteCard(this.cityName), 100);
         }
       } catch (err) {
         alert(err);

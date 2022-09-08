@@ -157,6 +157,12 @@ $animDuration: $animationDuration;
   animation-timing-function: $fastTimingFunction;
 }
 
+.cards-leave-active {
+  animation-name: disappear;
+  animation-duration: $animDuration;
+  animation-timing-function: $fastTimingFunction;
+}
+
 .bordered-container {
   margin: 0 auto;
 }
