@@ -42,7 +42,6 @@ export default {
     return {
       inputData: "",
       cityData: [],
-      isAnimationStart: false,
       cardsCount: null,
     };
   },
