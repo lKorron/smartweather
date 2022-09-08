@@ -113,7 +113,8 @@ export default {
 
     onCityAdded() {
       if (this.paginateArray().length >= this.itemsPerPage) {
-        if (this.page !== this.maxPage) {
+        if (this.page != this.maxPage) {
+          console.log(this.page, this.maxPage);
           this.page = this.maxPage;
           this.startAnimation();
         }
