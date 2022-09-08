@@ -3,7 +3,7 @@
     <div class="info-grid">
       <TransitionGroup name="cards"
         ><WeatherCard
-          v-for="(city, i) in paginateArray()"
+          v-for="(city, i) in paginatedArray"
           :key="i"
           class="card"
           :class="{
@@ -66,6 +66,11 @@ export default {
         `${window.location.pathname}?page=${this.page}`
       );
     },
+    paginatedArray() {
+      if (this.paginatedArray.length <= 0 && this.page > 1) {
+        this.previousPage();
+      }
+    },
   },
 
   data() {
@@ -79,7 +84,7 @@ export default {
   methods: {
     chooseCard(cityName, isDeleteCardClicked) {
       if (isDeleteCardClicked === false) {
-        this.chosenCard = this.paginateArray().filter(
+        this.chosenCard = this.paginatedArray.filter(
           (el) => el.name == cityName
         )[0];
       }
@@ -99,22 +104,10 @@ export default {
       this.page++;
       this.startAnimation();
     },
-    paginateArray() {
-      const start = (this.page - 1) * this.itemsPerPage;
-      const end = (this.page - 1) * this.itemsPerPage + this.itemsPerPage;
-
-      let resultingArray = this.cityData.slice(start, end);
-
-      if (resultingArray.length <= 0 && this.page > 1) {
-        this.previousPage();
-      }
-      return resultingArray;
-    },
 
     onCityAdded() {
-      if (this.paginateArray().length >= this.itemsPerPage) {
+      if (this.paginatedArray.length >= this.itemsPerPage) {
         if (this.page != this.maxPage) {
-          console.log(this.page, this.maxPage);
           this.page = this.maxPage;
           this.startAnimation();
         }
@@ -127,6 +120,15 @@ export default {
     },
   },
   computed: {
+    paginatedArray() {
+      const start = (this.page - 1) * this.itemsPerPage;
+      const end = (this.page - 1) * this.itemsPerPage + this.itemsPerPage;
+
+      const resultingArray = this.cityData.slice(start, end);
+
+      return resultingArray;
+    },
+
     isBorderActive() {
       return this.cityData.length > 0;
     },
