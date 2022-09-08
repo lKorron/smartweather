@@ -77,10 +77,12 @@ export default {
     };
   },
   methods: {
-    chooseCard(cityName) {
-      this.chosenCard = this.paginateArray().filter(
-        (el) => el.name == cityName
-      )[0];
+    chooseCard(cityName, isDeleteCardClicked) {
+      if (isDeleteCardClicked === false) {
+        this.chosenCard = this.paginateArray().filter(
+          (el) => el.name == cityName
+        )[0];
+      }
     },
     startAnimation() {
       this.isAnimationStart = true;
@@ -120,6 +122,7 @@ export default {
 
     deleteCard(name) {
       this.$emit("onDelete", name);
+      this.chosenCard = null;
     },
   },
   computed: {
