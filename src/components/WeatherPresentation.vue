@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { capitalizeFirstLetter } from "../App.vue";
+import { capitalizeFirstLetter } from "../formatMethods.js";
 export default {
   name: "WeatherPresentation",
   props: { cityCard: Object },

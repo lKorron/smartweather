@@ -30,6 +30,7 @@
 <script>
 import InfoGrid from "./components/InfoGrid.vue";
 import AppFilter from "./components/AppFilter.vue";
+import { capitalizeFirstLetter } from "./formatMethods.js";
 
 export default {
   name: "App",
@@ -127,14 +128,6 @@ export default {
     },
   },
 };
-
-export function capitalizeFirstLetter(string) {
-  let result = string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-
-  result = result.replace(/(-)(\S)/g, (s) => s.toUpperCase());
-
-  return result;
-}
 </script>
 
 <style lang="scss">
