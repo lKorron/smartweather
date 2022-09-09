@@ -35,9 +35,10 @@ export default {
 
   methods: {
     onCardClick(evt) {
-      const isDeleteButtonClicked = evt.target.classList.contains(
-        "card__delete-button"
-      );
+      const deleteButtonClass = "card__delete-button";
+
+      const isDeleteButtonClicked =
+        evt.target.classList.contains(deleteButtonClass);
       this.$emit("onClick", this.cityData.name, isDeleteButtonClicked);
     },
     deleteCard() {
