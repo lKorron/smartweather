@@ -71,6 +71,17 @@ export default {
         this.previousPage();
       }
     },
+
+    cityDataLength(newValue, oldValue) {
+      if (newValue > oldValue) {
+        if (this.paginatedArray.length >= this.itemsPerPage) {
+          if (this.page != this.maxPage) {
+            this.page = this.maxPage;
+            this.startAnimation();
+          }
+        }
+      }
+    },
   },
 
   data() {
@@ -92,9 +103,11 @@ export default {
     startAnimation() {
       this.isAnimationStart = true;
 
+      const animationTime = 300;
+
       setTimeout(() => {
         this.isAnimationStart = false;
-      }, 300);
+      }, animationTime);
     },
     previousPage() {
       this.page--;
@@ -103,15 +116,6 @@ export default {
     nextPage() {
       this.page++;
       this.startAnimation();
-    },
-
-    onCityAdded() {
-      if (this.paginatedArray.length >= this.itemsPerPage) {
-        if (this.page != this.maxPage) {
-          this.page = this.maxPage;
-          this.startAnimation();
-        }
-      }
     },
 
     deleteCard(name) {
@@ -139,6 +143,10 @@ export default {
     },
     maxPage() {
       return Math.ceil(this.cityData.length / this.itemsPerPage);
+    },
+
+    cityDataLength() {
+      return this.cityData.length;
     },
   },
   components: { WeatherCard, WeatherPresentation },

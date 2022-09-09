@@ -4,12 +4,12 @@
     <div class="input-container">
       <label for="city-input">Введите название города</label>
       <input
-        @keydown.enter="transferInfo"
+        @keydown.enter="addCity"
         v-model="inputData"
         id="city-input"
         type="text"
       />
-      <button class="add-button" @click="transferInfo">Добавить</button>
+      <button class="add-button" @click="addCity">Добавить</button>
     </div>
 
     <Transition name="represent"
@@ -38,6 +38,12 @@ export default {
     AppFilter,
   },
 
+  watch: {
+    cityDataLength() {
+      localStorage.setItem("storedCityData", JSON.stringify(this.cityData));
+    },
+  },
+
   data() {
     return {
       inputData: "",
@@ -59,7 +65,7 @@ export default {
   },
 
   methods: {
-    transferInfo() {
+    addCity() {
       if (this.inputData === "") {
         alert("Введите название города!");
         return;
@@ -84,12 +90,7 @@ export default {
 
       this.cityData.push(obj);
 
-      // setInterval(() => this.getWeatherJson(this.cityName), 3000);
       this.getWeatherJson(cityName);
-
-      localStorage.setItem("storedCityData", JSON.stringify(this.cityData));
-
-      this.$refs.infoGrid?.onCityAdded();
     },
     async getWeatherJson(cityName) {
       let name = cityName.toLowerCase();
@@ -114,10 +115,15 @@ export default {
     },
     deleteCard(name) {
       this.cityData = this.cityData.filter((el) => el.name !== name);
-      localStorage.setItem("storedCityData", JSON.stringify(this.cityData));
     },
     cardsCountChanged(cardsCount) {
       this.cardsCount = cardsCount;
+    },
+  },
+
+  computed: {
+    cityDataLength() {
+      return this.cityData.length;
     },
   },
 };

@@ -26,7 +26,6 @@ export default {
   name: "WeatherCard",
   props: {
     cityData: Object,
-    id: Number,
     isStartAppearing: Boolean,
   },
 
@@ -42,11 +41,7 @@ export default {
       this.$emit("onClick", this.cityData.name, isDeleteButtonClicked);
     },
     deleteCard() {
-      //this.isDisappearing = true;
-
-      setTimeout(() => {
-        this.$emit("onDelete", this.cityData.name);
-      }, 0);
+      this.$emit("onDelete", this.cityData.name);
     },
   },
   computed: {
