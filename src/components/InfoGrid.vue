@@ -65,6 +65,8 @@ export default {
         document.title,
         `${window.location.pathname}?page=${this.page}`
       );
+
+      this.startAnimation();
     },
     paginatedArray() {
       if (this.paginatedArray.length <= 0 && this.page > 1) {
@@ -111,11 +113,9 @@ export default {
     },
     previousPage() {
       this.page--;
-      this.startAnimation();
     },
     nextPage() {
       this.page++;
-      this.startAnimation();
     },
 
     deleteCard(name) {
