@@ -31,6 +31,7 @@
 import InfoGrid from "./components/InfoGrid.vue";
 import AppFilter from "./components/AppFilter.vue";
 import { capitalizeFirstLetter } from "./formatMethods.js";
+import { loadWeather } from "./api.js";
 
 export default {
   name: "App",
@@ -60,7 +61,7 @@ export default {
       this.cityData = JSON.parse(data);
 
       this.cityData.forEach((el) => {
-        this.getWeatherJson(el.name);
+        this.injectData(el.name);
       });
     }
   },
@@ -84,34 +85,22 @@ export default {
         return;
       }
 
-      let obj = {
+      const cityObject = {
         name: cityName,
         data: null,
       };
 
-      this.cityData.push(obj);
+      this.cityData.push(cityObject);
 
-      this.getWeatherJson(cityName);
+      this.injectData(cityName);
     },
-    async getWeatherJson(cityName) {
-      let name = cityName.toLowerCase();
 
-      const apiKey = "27a56a3623427766dbb120e09e9f311f";
-
-      const getStr = `https://api.openweathermap.org/data/2.5/weather?q=${name}&lang=ru&appid=${apiKey}`;
-
+    async injectData(cityName) {
       try {
-        let response = await fetch(getStr);
-        if (response.ok) {
-          let json = await response.json();
-
-          this.cityData.find((el) => el.name === cityName).data = json;
-        } else {
-          alert(`Город "${cityName}" не найден`);
-          setTimeout(() => this.deleteCard(cityName), 100);
-        }
+        const loadedData = await loadWeather(cityName);
+        this.cityData.find((el) => el.name === cityName).data = loadedData;
       } catch (err) {
-        alert(err);
+        setTimeout(() => this.deleteCard(cityName), 100);
       }
     },
     deleteCard(name) {
