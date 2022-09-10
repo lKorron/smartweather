@@ -102,24 +102,11 @@ export default {
         }
         this.updateCard(cityName, data);
       });
-
-      // if (this.cityData.find((el) => el.name === cityName).data === null) {
-      //   this.deleteCard(cityName);
-      // }
     },
 
     updateCard(cityName, cityData) {
       this.cityData.find((el) => el.name === cityName).data = cityData;
     },
-
-    // async injectData(cityName) {
-    //   try {
-    //     const loadedData = await loadWeather(cityName);
-    //     this.cityData.find((el) => el.name === cityName).data = loadedData;
-    //   } catch (err) {
-    //     setTimeout(() => this.deleteCard(cityName), 100);
-    //   }
-    // },
     deleteCard(name) {
       this.cityData = this.cityData.filter((el) => el.name !== name);
       unsubscribeToCard(name);

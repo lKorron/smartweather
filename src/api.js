@@ -2,16 +2,6 @@ const API_KEY = "27a56a3623427766dbb120e09e9f311f";
 
 const cardHandlers = new Map();
 
-// function loadWeathers() {
-//   if (cardHandlers.size === 0) {
-//     return;
-//   }
-
-//   Array.from(cardHandlers.keys()).forEach((cityName) => {
-//     loadWeather(cityName);
-//   });
-// }
-
 const loadWeather = (cityName) => {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=ru&appid=${API_KEY}`
@@ -45,5 +35,3 @@ export function subscribeToCard(cityName, callback) {
 export function unsubscribeToCard(cityName) {
   cardHandlers.delete(cityName);
 }
-
-window.cardHandlers = cardHandlers;
