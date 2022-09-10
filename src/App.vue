@@ -95,7 +95,10 @@ export default {
 
       subscribeToCard(cityName, (data) => {
         if (data === null) {
-          this.deleteCard(cityName);
+          setTimeout(() => {
+            this.deleteCard(cityName);
+          }, 100);
+          return;
         }
         this.updateCard(cityName, data);
       });
