@@ -1,6 +1,18 @@
 const API_KEY = "27a56a3623427766dbb120e09e9f311f";
 
-export const loadWeather = (cityName) =>
+const cardHandlers = new Map();
+
+// function loadWeathers() {
+//   if (cardHandlers.size === 0) {
+//     return;
+//   }
+
+//   Array.from(cardHandlers.keys()).forEach((cityName) => {
+//     loadWeather(cityName);
+//   });
+// }
+
+const loadWeather = (cityName) => {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=ru&appid=${API_KEY}`
   )
@@ -8,10 +20,30 @@ export const loadWeather = (cityName) =>
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("city not founden");
+        throw new Error("city not founded");
       }
     })
-    .catch((err) => {
+    .then((rawJson) => {
+      cardHandlers.get(cityName).forEach((fn) => {
+        fn(rawJson);
+      });
+    })
+    .catch(() => {
       alert(`Город ${cityName} не найден`);
-      throw new Error(err);
+      cardHandlers.get(cityName).forEach((fn) => {
+        fn(null);
+      });
     });
+};
+
+export function subscribeToCard(cityName, callback) {
+  const subscribers = cardHandlers.get(cityName) || [];
+  cardHandlers.set(cityName, [...subscribers, callback]);
+  loadWeather(cityName);
+}
+
+export function unsubscribeToCard(cityName) {
+  cardHandlers.delete(cityName);
+}
+
+window.cardHandlers = cardHandlers;

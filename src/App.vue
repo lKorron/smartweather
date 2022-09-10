@@ -31,7 +31,7 @@
 import InfoGrid from "./components/InfoGrid.vue";
 import AppFilter from "./components/AppFilter.vue";
 import { capitalizeFirstLetter } from "./formatMethods.js";
-import { loadWeather } from "./api.js";
+import { subscribeToCard, unsubscribeToCard } from "./api.js";
 
 export default {
   name: "App",
@@ -56,12 +56,13 @@ export default {
 
   created() {
     const data = localStorage.getItem("storedCityData");
-
     if (data !== null) {
       this.cityData = JSON.parse(data);
 
       this.cityData.forEach((el) => {
-        this.injectData(el.name);
+        subscribeToCard(el.name, (data) => {
+          this.updateCard(el.name, data);
+        });
       });
     }
   },
@@ -92,19 +93,33 @@ export default {
 
       this.cityData.push(cityObject);
 
-      this.injectData(cityName);
+      subscribeToCard(cityName, (data) => {
+        if (data === null) {
+          this.deleteCard(cityName);
+        }
+        this.updateCard(cityName, data);
+      });
+
+      // if (this.cityData.find((el) => el.name === cityName).data === null) {
+      //   this.deleteCard(cityName);
+      // }
     },
 
-    async injectData(cityName) {
-      try {
-        const loadedData = await loadWeather(cityName);
-        this.cityData.find((el) => el.name === cityName).data = loadedData;
-      } catch (err) {
-        setTimeout(() => this.deleteCard(cityName), 100);
-      }
+    updateCard(cityName, cityData) {
+      this.cityData.find((el) => el.name === cityName).data = cityData;
     },
+
+    // async injectData(cityName) {
+    //   try {
+    //     const loadedData = await loadWeather(cityName);
+    //     this.cityData.find((el) => el.name === cityName).data = loadedData;
+    //   } catch (err) {
+    //     setTimeout(() => this.deleteCard(cityName), 100);
+    //   }
+    // },
     deleteCard(name) {
       this.cityData = this.cityData.filter((el) => el.name !== name);
+      unsubscribeToCard(name);
     },
     cardsCountChanged(cardsCount) {
       this.cardsCount = cardsCount;
