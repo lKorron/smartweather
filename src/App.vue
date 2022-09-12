@@ -1,17 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="app-name">Smart weather<sup>TM</sup></div>
-    <div class="input-container">
-      <label for="city-input">Введите название города</label>
-      <input
-        ref="input"
-        @keydown.enter="addCity"
-        v-model="inputData"
-        id="city-input"
-        type="text"
-      />
-      <button class="add-button" @click="addCity">Добавить</button>
-    </div>
+    <add-weather @add-city="addCity"></add-weather>
 
     <Transition name="represent"
       ><div v-if="cityData.length > 0" class="app-representation">
@@ -31,6 +21,7 @@
 <script>
 import InfoGrid from "./components/InfoGrid.vue";
 import AppFilter from "./components/AppFilter.vue";
+import AddWeather from "./components/AddWeather.vue";
 import { capitalizeFirstLetter } from "./formatMethods.js";
 import { subscribeToCard, unsubscribeToCard } from "./api.js";
 
@@ -39,6 +30,7 @@ export default {
   components: {
     InfoGrid,
     AppFilter,
+    AddWeather,
   },
 
   watch: {
@@ -49,7 +41,6 @@ export default {
 
   data() {
     return {
-      inputData: "",
       cityData: [],
       cardsCount: null,
     };
@@ -69,14 +60,8 @@ export default {
   },
 
   methods: {
-    addCity() {
-      if (this.inputData === "") {
-        alert("Введите название города!");
-        return;
-      }
-
-      const cityName = this.inputData;
-      this.inputData = "";
+    addCity(inputData) {
+      const cityName = inputData;
 
       if (
         this.cityData.filter(
@@ -166,25 +151,6 @@ sup {
 
 .app-name {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-
-.input-container :not(:last-child) {
-  margin-bottom: 10px;
-}
-
-.input-container {
-  button {
-    width: 70%;
-    margin: 0 auto;
-  }
 }
 
 button {
