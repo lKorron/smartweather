@@ -17,6 +17,10 @@ export default {
     infoGridRef: Object,
   },
 
+  emits: {
+    onCardsCountChange: (value) => typeof value === "number",
+  },
+
   data() {
     return {
       cards: 3,

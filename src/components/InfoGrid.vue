@@ -43,7 +43,9 @@ export default {
     cardsCount: Number,
   },
 
-  emits: ["onDelete", "onClick"],
+  emits: {
+    onDelete: (value) => typeof value === "string",
+  },
 
   created() {
     const windowData = Object.fromEntries(

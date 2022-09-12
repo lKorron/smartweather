@@ -29,6 +29,13 @@ export default {
     isStartAppearing: Boolean,
   },
 
+  emits: {
+    onClick: (value1, value2) => {
+      return typeof value1 === "string" && typeof value2 === "boolean";
+    },
+    onDelete: (value) => typeof value === "string",
+  },
+
   data() {
     return {};
   },
