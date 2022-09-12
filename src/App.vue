@@ -4,6 +4,7 @@
     <div class="input-container">
       <label for="city-input">Введите название города</label>
       <input
+        ref="input"
         @keydown.enter="addCity"
         v-model="inputData"
         id="city-input"
@@ -14,14 +15,14 @@
 
     <Transition name="represent"
       ><div v-if="cityData.length > 0" class="app-representation">
-        <AppFilter @onCardsCountChange="cardsCountChanged"></AppFilter>
+        <app-filter @onCardsCountChange="cardsCountChanged"></app-filter>
 
-        <InfoGrid
+        <info-grid
           :cityData="cityData"
           @onDelete="deleteCard"
           ref="infoGrid"
           :cardsCount="cardsCount"
-        ></InfoGrid>
+        ></info-grid>
       </div>
     </Transition>
   </div>

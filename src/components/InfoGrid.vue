@@ -2,7 +2,7 @@
   <div class="bordered-container" :class="{ infoBorder: isBorderActive }">
     <div class="info-grid">
       <TransitionGroup name="cards"
-        ><WeatherCard
+        ><weather-card
           v-for="(city, i) in paginatedArray"
           :key="i"
           class="card"
@@ -13,7 +13,7 @@
           @onDelete="deleteCard"
           :cityData="city"
           :isStartAppearing="isAnimationStart"
-        ></WeatherCard>
+        ></weather-card>
       </TransitionGroup>
     </div>
   </div>
@@ -26,10 +26,10 @@
       &gt;
     </button>
   </div>
-  <WeatherPresentation
+  <weather-presentation
     v-if="chosenCard"
     :cityCard="chosenCard"
-  ></WeatherPresentation>
+  ></weather-presentation>
 </template>
 
 <script>
