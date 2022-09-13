@@ -11,17 +11,19 @@
           :cityData="cityData"
           :cardsCount="cardsCount"
           @onDelete="deleteCard"
-          @onExpand="expandCard"
+          @onExpand="openPopup"
         ></info-grid>
       </div>
     </Transition>
   </div>
+  <weather-popup :isOpen="isPopupOpen" @onClose="closePopup"></weather-popup>
 </template>
 
 <script>
 import InfoGrid from "./components/InfoGrid.vue";
 import AppFilter from "./components/AppFilter.vue";
 import AddWeather from "./components/AddWeather.vue";
+import WeatherPopup from "./components/WeatherPopup.vue";
 import { capitalizeFirstLetter } from "./formatMethods.js";
 import { subscribeToCard, unsubscribeToCard } from "./api.js";
 
@@ -31,6 +33,7 @@ export default {
     InfoGrid,
     AppFilter,
     AddWeather,
+    WeatherPopup,
   },
 
   watch: {
@@ -43,6 +46,7 @@ export default {
     return {
       cityData: [],
       cardsCount: null,
+      isPopupOpen: false,
     };
   },
 
@@ -100,7 +104,12 @@ export default {
     cardsCountChanged(cardsCount) {
       this.cardsCount = cardsCount;
     },
-    expandCard() {},
+    openPopup() {
+      this.isPopupOpen = true;
+    },
+    closePopup() {
+      this.isPopupOpen = false;
+    },
   },
 
   computed: {
