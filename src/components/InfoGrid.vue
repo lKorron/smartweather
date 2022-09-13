@@ -11,6 +11,7 @@
           }"
           @onClick="chooseCard"
           @onDelete="deleteCard"
+          @onExpand="expandCard"
           :cityData="city"
           :isStartAppearing="isAnimationStart"
         ></weather-card>
@@ -45,6 +46,7 @@ export default {
 
   emits: {
     onDelete: (value) => typeof value === "string",
+    onExpand: (value) => typeof value === "string",
   },
 
   created() {
@@ -128,6 +130,9 @@ export default {
           this.chosenCard = null;
         }
       }
+    },
+    expandCard(name) {
+      this.$emit("onExpand", name);
     },
   },
   computed: {

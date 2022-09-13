@@ -9,9 +9,9 @@
 
         <info-grid
           :cityData="cityData"
-          @onDelete="deleteCard"
-          ref="infoGrid"
           :cardsCount="cardsCount"
+          @onDelete="deleteCard"
+          @onExpand="expandCard"
         ></info-grid>
       </div>
     </Transition>
@@ -100,6 +100,7 @@ export default {
     cardsCountChanged(cardsCount) {
       this.cardsCount = cardsCount;
     },
+    expandCard() {},
   },
 
   computed: {

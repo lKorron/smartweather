@@ -16,6 +16,9 @@
       {{ description }}
     </div>
     <button @click="deleteCard" class="card__delete-button">Удалить</button>
+    <div class="card__more" @click="expandCard">
+      <img src="../assets/expand.png" alt="expand" />
+    </div>
   </div>
 </template>
 
@@ -34,6 +37,7 @@ export default {
       return typeof value1 === "string" && typeof value2 === "boolean";
     },
     onDelete: (value) => typeof value === "string",
+    onExpand: (value) => typeof value === "string",
   },
 
   data() {
@@ -50,6 +54,9 @@ export default {
     },
     deleteCard() {
       this.$emit("onDelete", this.cityData.name);
+    },
+    expandCard() {
+      this.$emit("onExpand", this.cityData.name);
     },
   },
   computed: {
@@ -88,6 +95,7 @@ $hoverColor: rgb(42, 99, 204);
 $appearDuration: $animationDuration;
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -109,12 +117,32 @@ $appearDuration: $animationDuration;
     padding-top: 10px;
   }
 
-  > :last-child {
+  > :nth-last-child(2) {
     margin-bottom: 10px;
   }
 
-  > :nth-last-child(2) {
+  > :nth-last-child(3) {
     margin-bottom: 10px;
+  }
+
+  &__more {
+    $size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: $size;
+    height: $size;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    img {
+      width: $size;
+      height: $size;
+    }
   }
 
   &__name {
