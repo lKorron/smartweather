@@ -1,7 +1,8 @@
 <template>
   <div v-if="isOpen" class="backdrop" @click="close">
-    <div class="popup-body" @click.stop>
-      <div class="popup-body__content">
+    <div class="popup" @click.stop>
+      <h2 class="popup__header"><slot name="header">Заголовок</slot></h2>
+      <div class="popup__content">
         <slot
           >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui
           reprehenderit dolor et aut nostrum quisquam, nisi earum mollitia hic,
@@ -62,7 +63,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.popup-body {
+.popup {
   background-color: #fff;
   max-width: 500px;
   margin: 0 auto;

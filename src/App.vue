@@ -16,7 +16,10 @@
       </div>
     </Transition>
   </div>
-  <weather-popup :isOpen="isPopupOpen" @onClose="closePopup"></weather-popup>
+  <weather-popup :isOpen="isPopupOpen" @onClose="closePopup">
+    <template v-slot:header>city name</template>
+    city description
+  </weather-popup>
 </template>
 
 <script>
