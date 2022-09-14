@@ -16,7 +16,7 @@
       </div>
     </Transition>
   </div>
-  <weather-popup :isOpen="isPopupOpen" @onClose="closePopup">
+  <weather-popup ref="weatherPopup">
     <template v-slot:header>city name</template>
     city description
   </weather-popup>
@@ -49,7 +49,6 @@ export default {
     return {
       cityData: [],
       cardsCount: null,
-      isPopupOpen: false,
     };
   },
 
@@ -107,11 +106,12 @@ export default {
     cardsCountChanged(cardsCount) {
       this.cardsCount = cardsCount;
     },
-    openPopup() {
-      this.isPopupOpen = true;
-    },
-    closePopup() {
-      this.isPopupOpen = false;
+    async openPopup() {
+      const popupResult = await this.$refs.weatherPopup.open();
+
+      if (popupResult) {
+        // logic when resolved
+      }
     },
   },
 
