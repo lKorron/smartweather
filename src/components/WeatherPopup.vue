@@ -83,6 +83,16 @@ export default {
 
   &__content {
     margin-bottom: 20px;
+
+    p {
+      text-align: justify;
+      text-indent: 20px;
+    }
+  }
+
+  button {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 </style>

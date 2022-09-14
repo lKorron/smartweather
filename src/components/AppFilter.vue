@@ -1,14 +1,20 @@
 <template>
   <div class="filter">
     <div class="filter-body">
-      <div class="filter__image">
-        <img src="../assets/cards.png" alt="cards" />
+      <div class="filter-body__count-filter">
+        <div class="filter__image">
+          <img src="../assets/cards.png" alt="cards" />
+        </div>
+        <select v-model="cards" @change="onSelectChange" class="filter__select">
+          <option value="3">3</option>
+          <option value="6">6</option>
+          <option value="9">9</option>
+        </select>
       </div>
-      <select v-model="cards" @change="onSelectChange" class="filter__select">
-        <option value="3">3</option>
-        <option value="6">6</option>
-        <option value="9">9</option>
-      </select>
+
+      <div class="info-icon" @click="infoClick">
+        <img src="../assets/info.png" alt="info" />
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +27,7 @@ export default {
 
   emits: {
     onCardsCountChange: (value) => typeof value === "number",
+    infoClick: null,
   },
 
   data() {
@@ -31,6 +38,9 @@ export default {
   methods: {
     onSelectChange() {
       this.$emit("onCardsCountChange", parseInt(this.cards));
+    },
+    infoClick() {
+      this.$emit("infoClick");
     },
   },
 };
@@ -52,11 +62,32 @@ export default {
   }
 }
 
+.info-icon {
+  $size: 18px;
+  width: $size;
+  height: $size;
+  transition: transform 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  img {
+    width: $size;
+    height: $size;
+  }
+}
+
 .filter-body {
   display: flex;
+  justify-content: space-between;
 
-  :first-child {
-    margin-right: 5px;
+  &__count-filter {
+    display: flex;
+    :first-child {
+      margin-right: 5px;
+    }
   }
 }
 </style>

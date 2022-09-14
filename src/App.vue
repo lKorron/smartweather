@@ -5,20 +5,41 @@
 
     <Transition name="represent"
       ><div v-if="cityData.length > 0" class="app-representation">
-        <app-filter @onCardsCountChange="cardsCountChanged"></app-filter>
+        <app-filter
+          @onCardsCountChange="cardsCountChanged"
+          @infoClick="openPopup"
+        ></app-filter>
 
         <info-grid
           :cityData="cityData"
           :cardsCount="cardsCount"
           @onDelete="deleteCard"
-          @onExpand="openPopup"
         ></info-grid>
       </div>
     </Transition>
   </div>
   <weather-popup ref="weatherPopup">
-    <template v-slot:header>city name</template>
-    city description
+    <template v-slot:header>О приложении</template>
+    <p>
+      Введите город, о котором вам необходимо узнать погодные условия - карточка
+      с ним добится в сетку. Названия городов могут быть как на русском, так и
+      на английском языке.
+    </p>
+    <p>
+      Число рядом с иконкой настраивает максимальное количество отображаемых
+      городов за раз.
+    </p>
+    <p>
+      При клике на карточку отображается подробная информация о погоде. Чтобы
+      удалить карточку, необходимо нажать на соответстующую кнопку.
+    </p>
+
+    <div class="creator">
+      <i
+        >Created by
+        <a href="https://github.com/lKorron" target="_blank">lkorron</a></i
+      >
+    </div>
   </weather-popup>
 </template>
 
@@ -111,6 +132,7 @@ export default {
 
       if (popupResult) {
         // logic when resolved
+        // for other popups
       }
     },
   },
@@ -154,7 +176,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $mainColor;
   margin-top: 60px;
 }
 
@@ -173,10 +195,30 @@ button {
   color: #fff;
   background-color: #48484a;
   transition: transform 0.2s;
+  cursor: pointer;
 
   &:hover {
     // outline: solid rgb(42, 99, 204);
     transform: scale(1.05);
+  }
+}
+
+.creator {
+  color: rgba($color: $mainColor, $alpha: 0.5);
+  a {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: rgba($color: $mainColor, $alpha: 1);
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: inherit;
+    }
   }
 }
 </style>

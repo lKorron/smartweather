@@ -16,9 +16,6 @@
       {{ description }}
     </div>
     <button @click="deleteCard" class="card__delete-button">Удалить</button>
-    <div class="card__more" @click="expandCard">
-      <img src="../assets/expand.png" alt="expand" />
-    </div>
   </div>
 </template>
 
@@ -37,7 +34,6 @@ export default {
       return typeof value1 === "string" && typeof value2 === "boolean";
     },
     onDelete: (value) => typeof value === "string",
-    onExpand: (value) => typeof value === "string",
   },
 
   data() {
@@ -54,9 +50,6 @@ export default {
     },
     deleteCard() {
       this.$emit("onDelete", this.cityData.name);
-    },
-    expandCard() {
-      this.$emit("onExpand", this.cityData.name);
     },
   },
   computed: {
@@ -117,11 +110,11 @@ $appearDuration: $animationDuration;
     padding-top: 10px;
   }
 
-  > :nth-last-child(2) {
+  > :last-child {
     margin-bottom: 10px;
   }
 
-  > :nth-last-child(3) {
+  > :nth-last-child(2) {
     margin-bottom: 10px;
   }
 
