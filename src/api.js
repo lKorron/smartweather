@@ -3,9 +3,13 @@ const API_KEY = "27a56a3623427766dbb120e09e9f311f";
 const cardHandlers = new Map();
 
 const loadWeather = (cityName) => {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=ru&appid=${API_KEY}`
-  )
+  const url = new URL("https://api.openweathermap.org/data/2.5/weather?");
+  const urlParams = new URLSearchParams("q=cityName&lang=ru&appid=API_KEY");
+
+  urlParams.set("q", cityName);
+  urlParams.set("appid", API_KEY);
+
+  fetch(url + urlParams)
     .then((response) => {
       if (response.ok) {
         return response.json();
