@@ -1,7 +1,9 @@
 <template>
   <div class="filter">
     <div class="filter-body">
-      <div class="filter__name">Карточки {{}}</div>
+      <div class="filter__image">
+        <img src="../assets/cards.png" alt="cards" />
+      </div>
       <select v-model="cards" @change="onSelectChange" class="filter__select">
         <option value="3">3</option>
         <option value="6">6</option>
@@ -39,11 +41,22 @@ export default {
   margin-bottom: 10px;
 }
 
+.filter__image {
+  $size: 18px;
+  width: $size;
+  height: $size;
+
+  img {
+    width: $size;
+    height: $size;
+  }
+}
+
 .filter-body {
   display: flex;
 
   :first-child {
-    margin-right: 10px;
+    margin-right: 5px;
   }
 }
 </style>
