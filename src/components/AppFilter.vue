@@ -30,6 +30,16 @@ export default {
     "info-click": null,
   },
 
+  created() {
+    const storedCardsCount = localStorage.getItem("storedCardsCount");
+
+    if (storedCardsCount) {
+      this.cards = storedCardsCount;
+    }
+
+    this.$emit("сards-сount-change", parseInt(this.cards));
+  },
+
   data() {
     return {
       cards: 3,
@@ -37,6 +47,7 @@ export default {
   },
   methods: {
     selectChange() {
+      localStorage.setItem("storedCardsCount", this.cards);
       this.$emit("сards-сount-change", parseInt(this.cards));
     },
     infoClick() {

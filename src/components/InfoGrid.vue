@@ -55,6 +55,12 @@ export default {
     if (windowData.page) {
       this.page = windowData.page;
     }
+
+    const chosenCardName = localStorage.getItem("storedChosenCardName");
+
+    if (chosenCardName) {
+      this.reloadChooseCard(chosenCardName);
+    }
   },
 
   watch: {
@@ -97,11 +103,18 @@ export default {
     };
   },
   methods: {
+    reloadChooseCard(cityName) {
+      this.chosenCard = this.paginatedArray.filter(
+        (el) => el.name == cityName
+      )[0];
+    },
     chooseCard(cityName, isDeleteCardClicked) {
       if (isDeleteCardClicked === false) {
         this.chosenCard = this.paginatedArray.filter(
           (el) => el.name == cityName
         )[0];
+
+        localStorage.setItem("storedChosenCardName", cityName);
       }
     },
     startAnimation() {
