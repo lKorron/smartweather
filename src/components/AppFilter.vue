@@ -5,7 +5,7 @@
         <div class="filter__image">
           <img src="../assets/cards.png" alt="cards" />
         </div>
-        <select v-model="cards" @change="onSelectChange" class="filter__select">
+        <select v-model="cards" @change="selectChange" class="filter__select">
           <option value="3">3</option>
           <option value="6">6</option>
           <option value="9">9</option>
@@ -26,8 +26,8 @@ export default {
   },
 
   emits: {
-    onCardsCountChange: (value) => typeof value === "number",
-    infoClick: null,
+    "сards-сount-change": (value) => typeof value === "number",
+    "info-click": null,
   },
 
   data() {
@@ -36,11 +36,11 @@ export default {
     };
   },
   methods: {
-    onSelectChange() {
-      this.$emit("onCardsCountChange", parseInt(this.cards));
+    selectChange() {
+      this.$emit("сards-сount-change", parseInt(this.cards));
     },
     infoClick() {
-      this.$emit("infoClick");
+      this.$emit("info-click");
     },
   },
 };

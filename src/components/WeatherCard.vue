@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="onCardClick"
+    @click="cardClick"
     class="card"
     :class="{ appearingCard: isStartAppearing }"
   >
@@ -30,10 +30,10 @@ export default {
   },
 
   emits: {
-    onClick: (value1, value2) => {
+    "card-click": (value1, value2) => {
       return typeof value1 === "string" && typeof value2 === "boolean";
     },
-    onDelete: (value) => typeof value === "string",
+    "card-delete": (value) => typeof value === "string",
   },
 
   data() {
@@ -41,15 +41,15 @@ export default {
   },
 
   methods: {
-    onCardClick(evt) {
+    cardClick(evt) {
       const deleteButtonClass = "card__delete-button";
 
       const isDeleteButtonClicked =
         evt.target.classList.contains(deleteButtonClass);
-      this.$emit("onClick", this.cityData.name, isDeleteButtonClicked);
+      this.$emit("card-click", this.cityData.name, isDeleteButtonClicked);
     },
     deleteCard() {
-      this.$emit("onDelete", this.cityData.name);
+      this.$emit("card-delete", this.cityData.name);
     },
   },
   computed: {

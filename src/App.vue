@@ -6,14 +6,14 @@
     <Transition name="represent"
       ><div v-if="cityData.length > 0" class="app-representation">
         <app-filter
-          @onCardsCountChange="cardsCountChanged"
-          @infoClick="openPopup"
+          @сards-сount-change="cardsCountChanged"
+          @info-click="openPopup"
         ></app-filter>
 
         <info-grid
           :cityData="cityData"
           :cardsCount="cardsCount"
-          @onDelete="deleteCard"
+          @card-delete="deleteCard"
         ></info-grid>
       </div>
     </Transition>

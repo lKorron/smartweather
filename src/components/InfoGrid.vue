@@ -9,8 +9,8 @@
           :class="{
             card_selected: chosenCard === city,
           }"
-          @onClick="chooseCard"
-          @onDelete="deleteCard"
+          @card-click="chooseCard"
+          @card-delete="deleteCard"
           :cityData="city"
           :isStartAppearing="isAnimationStart"
         ></weather-card>
@@ -44,7 +44,7 @@ export default {
   },
 
   emits: {
-    onDelete: (value) => typeof value === "string",
+    "card-delete": (value) => typeof value === "string",
   },
 
   created() {
@@ -121,7 +121,7 @@ export default {
     },
 
     deleteCard(name) {
-      this.$emit("onDelete", name);
+      this.$emit("card-delete", name);
 
       if (this.chosenCard) {
         if (this.chosenCard.name.toLowerCase() === name.toLowerCase()) {
