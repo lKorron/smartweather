@@ -2,7 +2,10 @@
   <div
     @click="cardClick"
     class="card"
-    :class="{ appearingCard: isStartAppearing }"
+    :class="{
+      appearingCard: isStartAppearing,
+      disappearingCard: isStartDisappearing,
+    }"
   >
     <div class="card__name">{{ name }}</div>
 
@@ -37,7 +40,9 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+      isStartDisappearing: false,
+    };
   },
 
   methods: {
@@ -49,7 +54,13 @@ export default {
       this.$emit("card-click", this.cityData.name, isDeleteButtonClicked);
     },
     deleteCard() {
-      this.$emit("card-delete", this.cityData.name);
+      const animationTime = 300;
+
+      this.isStartDisappearing = true;
+      setTimeout(() => {
+        this.$emit("card-delete", this.cityData.name);
+        this.isStartDisappearing = false;
+      }, animationTime);
     },
   },
   computed: {
