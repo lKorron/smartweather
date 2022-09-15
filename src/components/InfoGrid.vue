@@ -55,12 +55,16 @@ export default {
     if (windowData.page) {
       this.page = windowData.page;
     }
+  },
 
+  mounted() {
     const chosenCardName = localStorage.getItem("storedChosenCardName");
 
-    if (chosenCardName) {
-      this.reloadChooseCard(chosenCardName);
-    }
+    this.$nextTick(() => {
+      if (chosenCardName) {
+        this.reloadChooseCard(chosenCardName);
+      }
+    });
   },
 
   watch: {
