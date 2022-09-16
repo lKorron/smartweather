@@ -28,8 +28,6 @@ export default {
   @include sizeImgContainer($size: 300px);
   position: relative;
   margin: 0 auto;
-  border: 1px dashed gray;
-  border-radius: 10px;
   padding: 20px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -44,6 +42,6 @@ export default {
   bottom: 3.3px;
   left: 8px;
   text-align: center;
-  transition: transform 0.2s;
+  transition: transform 0.4s;
 }
 </style>

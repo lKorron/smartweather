@@ -1,7 +1,7 @@
 <template>
   <div class="presentation">
     <div class="presentation__body">
-      <div class="presentation__data">
+      <div class="presentation__numeric">
         <div class="presentation__temp temp">
           <h2 class="temp__header">Показатели темературы</h2>
           <div class="temp__average">
@@ -39,13 +39,15 @@
             <div class="other__name">Скорость порывов ветра:</div>
             <b>{{ cityCard.data?.wind.gust }} м/c</b>
           </div>
-          <div class="other__wind-direction">
-            <div class="other__name">Направление ветра:</div>
-            <b>{{ windAngle }}°</b>
-          </div>
         </div>
       </div>
-      <wind-compass :rotationAngle="windAngle"></wind-compass>
+      <div class="presentation__wind-angle wind-angle">
+        <h2 class="wind-angle__header">Направление ветра</h2>
+        <div class="wind-angle__value">
+          <b>{{ windAngle }}°</b>
+        </div>
+        <wind-compass :rotationAngle="windAngle"></wind-compass>
+      </div>
     </div>
   </div>
 </template>
@@ -110,14 +112,15 @@ export default {
   margin-top: 20px;
   box-shadow: 3px 3px 2px gray;
 
-  &__data {
+  &__numeric {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 }
 
 .presentation__temp,
-.presentation__other {
+.presentation__other,
+.presentation__wind-angle {
   border: 1px dashed gray;
   border-radius: 10px;
   margin: 10px;
@@ -139,6 +142,13 @@ export default {
   .temp__name,
   .other__name {
     margin-right: 10px;
+  }
+}
+
+.wind-angle {
+  &__value {
+    font-size: 30px;
+    margin-left: 15px;
   }
 }
 </style>
