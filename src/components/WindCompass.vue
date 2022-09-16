@@ -3,7 +3,7 @@
     <img class="compass__image" src="../assets/compass.png" alt="compass" />
     <div
       class="compass__arrow"
-      :style="`transform: rotate(${-rotationAngle}deg);`"
+      :style="`transform: rotate(${rotationAngle}deg);`"
     >
       <img src="../assets/compass-arrow.png" alt="compass" />
     </div>
