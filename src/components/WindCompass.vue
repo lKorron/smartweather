@@ -1,7 +1,10 @@
 <template>
   <div class="compass">
     <img class="compass__image" src="../assets/compass.png" alt="compass" />
-    <div class="compass__arrow">
+    <div
+      class="compass__arrow"
+      :style="`transform: rotate(${-rotationAngle}deg);`"
+    >
       <img src="../assets/compass-arrow.png" alt="compass" />
     </div>
   </div>
@@ -9,15 +12,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      rotationAngle: 30,
-    };
-  },
-
-  methods: {
-    rotateArrow(deg) {
-      this.rotationAngle = deg;
+  props: {
+    rotationAngle: {
+      type: Number,
+      required: true,
     },
   },
 };
@@ -43,13 +41,9 @@ export default {
   margin: auto;
   top: 0;
   right: 0;
-  bottom: 3px;
-  left: 15px;
+  bottom: 3.3px;
+  left: 8px;
   text-align: center;
   transition: transform 0.2s;
-
-  &:hover {
-    transform: rotate(-21.8deg);
-  }
 }
 </style>

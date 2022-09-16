@@ -29,23 +29,23 @@
           </div>
           <div class="other__humidity">
             <div class="other__name">Влажность:</div>
-            <b>{{ getMmPressure(cityCard.data?.main.humidity) }} %</b>
+            <b>{{ cityCard.data?.main.humidity }} %</b>
           </div>
           <div class="other__wind">
             <div class="other__name">Скорость ветра:</div>
-            <b>{{ getMmPressure(cityCard.data?.wind.speed) }} м/c</b>
+            <b>{{ cityCard.data?.wind.speed }} м/c</b>
           </div>
           <div v-if="cityCard.data?.wind.gust" class="other__gust">
             <div class="other__name">Скорость порывов ветра:</div>
-            <b>{{ getMmPressure(cityCard.data?.wind.gust) }} м/c</b>
+            <b>{{ cityCard.data?.wind.gust }} м/c</b>
           </div>
           <div class="other__wind-direction">
             <div class="other__name">Направление ветра:</div>
-            <b>{{ getMmPressure(cityCard.data?.wind.deg) }}°</b>
+            <b>{{ windAngle }}°</b>
           </div>
         </div>
       </div>
-      <wind-compass></wind-compass>
+      <wind-compass :rotationAngle="windAngle"></wind-compass>
     </div>
   </div>
 </template>
@@ -94,6 +94,10 @@ export default {
         );
       }
       return "-";
+    },
+
+    windAngle() {
+      return this.cityCard.data?.wind.deg;
     },
   },
 };
