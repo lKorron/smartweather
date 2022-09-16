@@ -23,7 +23,7 @@ const loadWeather = (cityName) => {
       });
     })
     .catch(() => {
-      alert(`Место ${cityName} не найдено`);
+      alert(`Местность ${cityName} не найдена`);
       cardHandlers.get(cityName).forEach((fn) => {
         fn(null);
       });
