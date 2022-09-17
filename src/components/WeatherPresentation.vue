@@ -46,7 +46,10 @@
         <div class="wind-angle__value">
           <b>{{ windAngle }}°</b>
         </div>
-        <wind-compass :rotationAngle="windAngle"></wind-compass>
+        <wind-compass
+          v-if="windAngle"
+          :rotationAngle="windAngle"
+        ></wind-compass>
       </div>
     </div>
   </div>

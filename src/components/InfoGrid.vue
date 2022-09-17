@@ -67,6 +67,10 @@ export default {
     });
   },
 
+  beforeUnmount() {
+    localStorage.removeItem("storedChosenCardName");
+  },
+
   watch: {
     cardsCount() {
       this.itemsPerPage = this.cardsCount;
@@ -138,13 +142,13 @@ export default {
     },
 
     deleteCard(name) {
-      this.$emit("card-delete", name);
-
       if (this.chosenCard) {
         if (this.chosenCard.name.toLowerCase() === name.toLowerCase()) {
           this.chosenCard = null;
         }
       }
+
+      this.$emit("card-delete", name);
     },
   },
   computed: {
