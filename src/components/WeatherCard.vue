@@ -221,4 +221,31 @@ $appearDuration: $animationDuration;
     transform: scale(0);
   }
 }
+
+/* Safari 10.1+ */
+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .card {
+      box-sizing: border-box;
+
+      &:hover {
+        outline: none;
+        border: 2px solid $hoverColor;
+        margin: -1px;
+      }
+
+      &__delete-button {
+        outline: none;
+        border: 1px solid $darkGray;
+      }
+    }
+
+    .card_selected {
+      outline: none;
+      border: 2px solid $darkGray;
+      margin: -1px;
+    }
+  }
+}
 </style>
