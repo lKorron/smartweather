@@ -197,6 +197,14 @@ $animDuration: $animationDuration;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   margin: $indent 0;
+
+  @media (max-width: $md1) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $md2) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .infoBorder {

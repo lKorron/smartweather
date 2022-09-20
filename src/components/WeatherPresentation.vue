@@ -109,6 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/variables.scss";
 .presentation {
   border: 1px solid gray;
   border-radius: 10px;
@@ -118,6 +119,10 @@ export default {
   &__numeric {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @media (max-width: $md2) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 

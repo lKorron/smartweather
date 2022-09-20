@@ -71,13 +71,17 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .popup {
   background-color: #fff;
   max-width: 500px;
-  margin: 0 auto;
   margin-top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 20px;
   border-radius: 10px;
 

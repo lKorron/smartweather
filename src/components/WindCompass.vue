@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss">
 @import "../scss/mixins.scss";
+@import "../scss/variables.scss";
 
 .compass {
   @include sizeImgContainer($size: 300px);
@@ -31,6 +32,16 @@ export default {
   padding: 20px;
   margin-top: 10px;
   margin-bottom: 20px;
+
+  @media (max-width: $md2) {
+    @include sizeImgContainer($size: 150px);
+
+    .compass__arrow {
+      @include sizeImgContainer($size: 40px);
+      left: 4.3px;
+      bottom: 1.7px;
+    }
+  }
 }
 
 .compass__arrow {
