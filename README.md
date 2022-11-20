@@ -1,24 +1,14 @@
 # smartweather
 
-## Project setup
-```
-npm install
-```
+Приложение, показывающее погоду на данный момент. Поиск работает на русском и английском языках, поддерживается любой формат ввода местоположения.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![preview](/screenshots/fullpage.png)
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<div align="center">
+    <table>
+        <tr>
+         <img width="300" src="/screenshots/mobile.png" alt="mobile" />
+        </tr>
+    </table>
+   
+</div>
